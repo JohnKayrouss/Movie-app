@@ -2,15 +2,15 @@ import { getMoviesByGenre } from "@/actions/MoviesList";
 import CollectionWrapper from "@/components/Collections/CollectionWrapper";
 import SearchTermContainer from "@/components/SearchTerm/SearchTermContainer";
 import MoviesPageWithHeaderShimmer from "@/components/Shimmer/MoviesPageWithHeaderShimmer";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
 
 export default function GenrePage({
 	params,
 	searchParams,
 }: {
-	params: Promise<{ genreSlug: string }>;
-	searchParams: Promise<{ page: string }>;
+	params: { genreSlug: string };
+	searchParams: { page: string };
 }) {
 	return (
 		<Suspense fallback={<MoviesPageWithHeaderShimmer />}>
@@ -22,12 +22,10 @@ const GenrePageContent = async ({
 	params,
 	searchParams,
 }: {
-	params: Promise<{ genreSlug: string }>;
-	searchParams: Promise<{ page: string }>;
+	params: { genreSlug: string };
+	searchParams: { page: string };
 }) => {
-	const resolvedParams = await params;
-	const resolvedSearchParams = await searchParams;
-	const page = Math.max(1, Number(resolvedSearchParams.page) || 1);
+	const page = Math.max(1, Number(searchParams.page) || 1);
 	const genres = [
 		{
 			id: 28,
@@ -107,18 +105,12 @@ const GenrePageContent = async ({
 		},
 	];
 	const movies = await getMoviesByGenre({
-		genreId: resolvedParams.genreSlug,
+		genreId: params.genreSlug,
 		pageNumber: page,
 	});
-	if (!resolvedParams.genreSlug || !movies.results.length) {
-		notFound();
-	}
-	console.log(movies);
-	const genre = genres.find(
-		(genre) => genre.id === Number(resolvedParams.genreSlug)
-	);
+	const genre = genres.find((genre) => genre.id === Number(params.genreSlug));
 	if (page > 500) {
-		redirect(`/movies/genres/${resolvedParams.genreSlug}?page=500`);
+		redirect(`/movies/genres/${params.genreSlug}?page=500`);
 	}
 	return (
 		<SearchTermContainer searchTerm={genre?.name || ""}>
@@ -127,7 +119,7 @@ const GenrePageContent = async ({
 				totalPages={movies.total_pages > 500 ? 500 : movies.total_pages}
 				currentPage={movies.page}
 				ShowPagination={true}
-				baseURL={`movies/genres/${resolvedParams.genreSlug}`}
+				baseURL={`movies/genres/${params.genreSlug}`}
 			/>
 		</SearchTermContainer>
 	);
