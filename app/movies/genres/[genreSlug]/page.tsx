@@ -2,7 +2,7 @@ import { getMoviesByGenre } from "@/actions/MoviesList";
 import CollectionWrapper from "@/components/Collections/CollectionWrapper";
 import SearchTermContainer from "@/components/SearchTerm/SearchTermContainer";
 import MoviesPageWithHeaderShimmer from "@/components/Shimmer/MoviesPageWithHeaderShimmer";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import React, { Suspense } from "react";
 
 export default function GenrePage({
@@ -110,6 +110,10 @@ const GenrePageContent = async ({
 		genreId: resolvedParams.genreSlug,
 		pageNumber: page,
 	});
+	if (!resolvedParams.genreSlug || !movies.results.length) {
+		notFound();
+	}
+	console.log(movies);
 	const genre = genres.find(
 		(genre) => genre.id === Number(resolvedParams.genreSlug)
 	);

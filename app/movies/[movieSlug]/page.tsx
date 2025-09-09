@@ -5,6 +5,7 @@ import {
 } from "@/actions/MoviesList";
 import SingleMovieDetails from "@/components/singleMovie/SingleMovieDetails";
 import MovieVisitTracker from "@/components/singleMovie/MovieVisitTracker";
+import { notFound } from "next/navigation";
 
 export default async function page({
 	params,
@@ -15,6 +16,9 @@ export default async function page({
 	const movie_basicInfoArr = await getSingleMovie_basicInfo({
 		movieId: movieSlug,
 	});
+	if (!movieSlug || !movie_basicInfoArr) {
+		notFound();
+	}
 	const movieVideos = await getMovieVideos({ movieId: movieSlug });
 	const movie_basicInfo = Array.isArray(movie_basicInfoArr)
 		? movie_basicInfoArr[0]
