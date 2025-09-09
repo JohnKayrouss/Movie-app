@@ -1,0 +1,5 @@
+{
+  "/page": "app/page.js",
+  "/user-profile/[userId]/favorites/page": "app/user-profile/[userId]/favorites/page.js",
+  "/user-profile/[userId]/watchlist/page": "app/user-profile/[userId]/watchlist/page.js"
+}
