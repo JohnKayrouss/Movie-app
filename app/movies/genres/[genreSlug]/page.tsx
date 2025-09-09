@@ -9,8 +9,8 @@ export default function GenrePage({
 	params,
 	searchParams,
 }: {
-	params: { genreSlug: string };
-	searchParams: { page: string };
+	params: Promise<{ genreSlug: string }>;
+	searchParams: Promise<{ page: string }>;
 }) {
 	return (
 		<Suspense fallback={<MoviesPageWithHeaderShimmer />}>
@@ -22,10 +22,12 @@ const GenrePageContent = async ({
 	params,
 	searchParams,
 }: {
-	params: { genreSlug: string };
-	searchParams: { page: string };
+	params: Promise<{ genreSlug: string }>;
+	searchParams: Promise<{ page: string }>;
 }) => {
-	const page = Math.max(1, Number(searchParams.page) || 1);
+	const resolvedParams = await params;
+	const resolvedSearchParams = await searchParams;
+	const page = Math.max(1, Number(resolvedSearchParams.page) || 1);
 	const genres = [
 		{
 			id: 28,
@@ -105,12 +107,14 @@ const GenrePageContent = async ({
 		},
 	];
 	const movies = await getMoviesByGenre({
-		genreId: params.genreSlug,
+		genreId: resolvedParams.genreSlug,
 		pageNumber: page,
 	});
-	const genre = genres.find((genre) => genre.id === Number(params.genreSlug));
+	const genre = genres.find(
+		(genre) => genre.id === Number(resolvedParams.genreSlug)
+	);
 	if (page > 500) {
-		redirect(`/movies/genres/${params.genreSlug}?page=500`);
+		redirect(`/movies/genres/${resolvedParams.genreSlug}?page=500`);
 	}
 	return (
 		<SearchTermContainer searchTerm={genre?.name || ""}>
@@ -119,7 +123,7 @@ const GenrePageContent = async ({
 				totalPages={movies.total_pages > 500 ? 500 : movies.total_pages}
 				currentPage={movies.page}
 				ShowPagination={true}
-				baseURL={`movies/genres/${params.genreSlug}`}
+				baseURL={`movies/genres/${resolvedParams.genreSlug}`}
 			/>
 		</SearchTermContainer>
 	);

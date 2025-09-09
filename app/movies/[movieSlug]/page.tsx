@@ -9,7 +9,7 @@ import MovieVisitTracker from "@/components/singleMovie/MovieVisitTracker";
 export default async function page({
 	params,
 }: {
-	params: { movieSlug: string };
+	params: Promise<{ movieSlug: string }>;
 }) {
 	const { movieSlug } = await params;
 	const movie_basicInfoArr = await getSingleMovie_basicInfo({
