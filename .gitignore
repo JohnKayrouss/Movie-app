@@ -11,3 +11,9 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Next.js build output
+.next/
+
+# Git ignore file
+.gitignore
