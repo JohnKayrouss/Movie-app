@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { User } from "lucide-react";
-import { currentUser } from "@clerk/nextjs/server";
-import { SignInButton } from "@clerk/nextjs";
+// import { currentUser } from "@clerk/nextjs/server";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import { SignOutButton } from "@clerk/nextjs";
 import SearchMovie from "./SearchMovie";
 import CategoriesDropdown from "./CategoriesDropdown";
@@ -12,8 +13,9 @@ import Logo from "./Logo";
 import CollapsibleMenu from "./CollapsibleMenu";
 import ProfileButton from "./ProfileButton";
 
-export default async function Navbar() {
-	const user = await currentUser();
+export default function Navbar() {
+	const userSession = useUser();
+	const { user } = userSession;
 	return (
 		<nav className='fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-xl py-2 shadow-lg shadow-black/50'>
 			<NavbarAnimatedbackground />
