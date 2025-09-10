@@ -4,10 +4,10 @@ import { Home, Search, Film } from "lucide-react";
 
 export default function NotFound() {
 	return (
-		<div className='min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black flex items-center justify-center px-4'>
+		<div className='min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black flex items-center justify-center px-4 pt-32 lg:pt-20'>
 			<div className='text-center space-y-12 max-w-4xl mx-auto'>
 				<div className='relative'>
-					<div className='text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400 animate-pulse'>
+					<div className='text-7xl lg:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400 animate-pulse'>
 						404
 					</div>
 					<div className='absolute -top-4 -right-4'>
@@ -16,10 +16,10 @@ export default function NotFound() {
 				</div>
 
 				<div className='space-y-6'>
-					<h1 className='text-6xl font-bold text-white'>
+					<h1 className='text-5xl lg:text-6xl font-bold text-white'>
 						Oops! Page Not Found
 					</h1>
-					<p className='text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto'>
+					<p className='text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto'>
 						The page you&apos;re looking for seems to have left the theater
 						early. Don&apos;t worry, there are plenty of other great films
 						waiting for you!
@@ -55,25 +55,25 @@ export default function NotFound() {
 					<div className='flex flex-wrap justify-center gap-6 text-lg'>
 						<Link
 							href='/movies/collections/popular-movies'
-							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-medium'>
+							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-sm md:font-base'>
 							⭐ Popular Movies
 						</Link>
 						<span className='text-gray-600 text-xl'>•</span>
 						<Link
 							href='/movies/collections/top-rated-movies'
-							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-medium'>
+							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-sm md:font-base'>
 							🏆 Top Rated
 						</Link>
 						<span className='text-gray-600 text-xl'>•</span>
 						<Link
 							href='/movies/collections/now-playing-movies'
-							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-medium'>
+							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-sm md:font-base'>
 							🎬 Now Playing
 						</Link>
 						<span className='text-gray-600 text-xl'>•</span>
 						<Link
 							href='/movies/genres'
-							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-medium'>
+							className='text-orange-400 hover:text-orange-300 transition-colors duration-300 font-sm md:font-base'>
 							🎭 Browse Genres
 						</Link>
 					</div>
