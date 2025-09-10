@@ -92,7 +92,7 @@ export default function Navbar() {
 					)}
 				</div>
 				<div className='xl:hidden'>
-					<CollapsibleMenu user={user} />
+					<CollapsibleMenu />
 				</div>
 			</div>
 		</nav>

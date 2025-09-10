@@ -9,12 +9,14 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import UserIcon from "./UserIcon";
-import { User } from "@clerk/nextjs/server";
+// import { User } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { SignInButton, SignOutButton } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { AlignLeft } from "lucide-react";
 
-export default function CollapsibleMenu({ user }: { user: User | null }) {
+export default function CollapsibleMenu() {
+	const userSession = useUser();
+	const { user } = userSession;
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -24,7 +26,7 @@ export default function CollapsibleMenu({ user }: { user: User | null }) {
 					className=' backdrop-blur-sm border border-white/20 text-white/90 hover:bg-white/10 hover:text-white hover:border-primary/50 transition-all duration-300 rounded-full p-1 items-center justify-center gap-4'>
 					<>
 						<AlignLeft className='w-8 h-8' size={20} />
-						<UserIcon user={user} />
+						<UserIcon />
 					</>
 				</Button>
 			</DropdownMenuTrigger>

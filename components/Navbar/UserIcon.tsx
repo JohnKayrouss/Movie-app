@@ -1,6 +1,8 @@
-import { User } from "@clerk/nextjs/server";
+import { useUser } from "@clerk/nextjs";
 import { User as Icon } from "lucide-react";
-export default function UserIcon({ user }: { user: User | null }) {
+export default function UserIcon() {
+	const userSession = useUser();
+	const { user } = userSession;
 	if (user) {
 		return (
 			<img
