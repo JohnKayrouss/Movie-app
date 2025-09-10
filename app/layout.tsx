@@ -17,6 +17,18 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang='en' className='dark' suppressHydrationWarning>
+				<head>
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `
+								(function() {
+									document.documentElement.classList.add('dark');
+									document.documentElement.style.colorScheme = 'dark';
+								})();
+							`,
+						}}
+					/>
+				</head>
 				<body
 					className={`${roboto.className} scrollbar-hidden min-h-screen flex flex-col`}
 					suppressHydrationWarning>
