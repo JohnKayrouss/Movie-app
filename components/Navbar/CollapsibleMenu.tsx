@@ -106,7 +106,7 @@ export default function CollapsibleMenu() {
 							</Link>
 						</>
 					) : (
-						<DropdownMenuItem className=' rounded-lg px-3 py-2'>
+						<DropdownMenuItem className=' rounded-lg px-3 py-2 cursor-pointer text-white/90 hover:text-white hover:bg-white/10 focus:bg-white/10 focus:text-white'>
 							<SignInButton mode='modal'>Sign in</SignInButton>
 						</DropdownMenuItem>
 					)}
