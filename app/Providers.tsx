@@ -7,8 +7,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 		<>
 			<ThemeProvider
 				attribute='class'
-				defaultTheme='system'
-				enableSystem
+				defaultTheme='dark'
+				enableSystem={false}
 				disableTransitionOnChange>
 				{children}
 				<Toaster />

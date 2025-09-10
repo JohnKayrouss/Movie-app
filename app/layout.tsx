@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang='en' suppressHydrationWarning>
+			<html lang='en' className='dark' suppressHydrationWarning>
 				<body
 					className={`${roboto.className} scrollbar-hidden min-h-screen flex flex-col`}
 					suppressHydrationWarning>
